@@ -1,0 +1,32 @@
+.loadMoreBtn {
+    margin: 0 auto;
+    display: block;
+    width: 180px;
+    height: auto;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 15px;
+    background-color: #0459f6;
+    border-color: transparent;
+    color: #000;
+    padding: 10px;
+    color: white;
+    font-size: 15px;
+    position: relative;
+    padding: 10px;
+    box-shadow: 5px 5px 9px -1px rgba(0, 0, 0, 0.47);
+    -webkit-box-shadow: 5px 5px 9px -1px rgba(0, 0, 0, 0.47);
+    -moz-box-shadow: 5px 5px 9px -1px rgba(0, 0, 0, 0.47);            
+}
+
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+    cursor: pointer;
+    border: 2px solid #0539f4;
+    background-color: #f7f706;
+    font-weight: 700;
+    border-radius: 20px;
+    color: #0b0b0b;
+    position: relative;
+    scale: 1.15;
+}
