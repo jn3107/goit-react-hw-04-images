@@ -1,27 +1,27 @@
-import { Button } from "./button/Button";
-import { ImageGallery } from "./imageGallery/ImageGallery";
-import { Loader } from "./loader/Loader";
-import { Modal } from "./modal/Modal";
-import { Searchbar } from "./searchbar/Searchbar";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { fetchImages } from "../api/apiService";
-import css from "./App.module.css";
-import { useEffect, useState } from "react";
+import { Button } from './button/Button';
+import { ImageGallery } from './imageGallery/ImageGallery';
+import { Loader } from './loader/Loader';
+import { Modal } from './modal/Modal';
+import { Searchbar } from './searchbar/Searchbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { fetchImages } from '../api/apiService';
+import css from './App.module.css';
+import { useEffect, useState } from 'react';
 
 export const App = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState(null);
-  const [tags, setTags] = useState("");
+  const [tags, setTags] = useState('');
   const [randomId, setRandomId] = useState(null);
 
   useEffect(() => {
-    if (searchQuery === "") {
+    if (searchQuery === '') {
       return;
     }
     async function addGallery() {
@@ -30,7 +30,7 @@ export const App = () => {
 
         const { hits, totalHits } = await fetchImages(searchQuery, page);
         if (hits.length === 0) {
-          toast.error("Sorry, there are no images matching your search query.");
+          toast.error('Sorry, there are no images matching your search query.');
           return;
         }
 
@@ -39,7 +39,7 @@ export const App = () => {
         setTotalPages(newTotalPages);
         if (page === newTotalPages) {
           toast.success(
-            "Sorry, there are no images matching your search query."
+            'Sorry, there are no images matching your search query.'
           );
         }
       } catch (error) {
@@ -51,7 +51,7 @@ export const App = () => {
     }
     addGallery();
   }, [searchQuery, page, randomId]);
-  
+
   const closeModal = () => {
     setShowModal(false);
   };
@@ -73,7 +73,6 @@ export const App = () => {
     setPage(prevState => prevState + 1);
   };
 
-  
   return (
     <div className={css.container}>
       <Searchbar onSubmitForm={handleSearchFormSubmit} />
@@ -86,10 +85,12 @@ export const App = () => {
         <Modal largeImageURL={largeImageURL} onCloseModal={closeModal} />
       )}
 
-      {images.length > 0 && totalPages !== page && !showLoader && <Button onLoadMoreClick={loadMoreClick} />}
+      {images.length > 0 && totalPages !== page && !showLoader && (
+        <Button onLoadMoreClick={loadMoreClick} />
+      )}
 
       {showLoader && <Loader />}
-        
+
       <ToastContainer autoClose={3000} />
     </div>
   );
